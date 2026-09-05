@@ -1,50 +1,273 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Setu - Communication Support</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>SETU</h1>
-    <p>Tap what you need</p>
+    <!-- HEADER -->
 
-    <div class="symbol-board">
+    <header class="header">
 
-        <button onclick="makeRequest('Water')">
-            💧<br>
-            Water
-        </button>
+        <div>
+            <h1>SETU</h1>
+            <p>When words are hard, connection shouldn't be.</p>
+        </div>
 
-        <button onclick="makeRequest('Pain')">
-            ❤️‍🩹<br>
-            Pain
-        </button>
+        <div class="role-switch">
 
-        <button onclick="makeRequest('Bathroom')">
-            🚻<br>
-            Bathroom
-        </button>
+            <button id="patientTab" onclick="showPatient()">
+                👤 Patient
+            </button>
 
-        <button onclick="makeRequest('Food')">
-            🍽️<br>
-            Food
-        </button>
+            <button id="caregiverTab" onclick="showCaregiver()">
+                👩‍⚕️ Caregiver
+            </button>
 
-        <button onclick="makeRequest('Company')">
-            👋<br>
-            Company
-        </button>
+        </div>
 
-        <button onclick="makeRequest('Help')">
-            🆘<br>
-            Help
-        </button>
+    </header>
 
-    </div>
+
+    <!-- ================= PATIENT INTERFACE ================= -->
+
+    <main id="patientView" class="view">
+
+        <section class="welcome">
+
+            <h2>What do you need?</h2>
+
+            <p>Tap a symbol to communicate.</p>
+
+        </section>
+
+
+        <section class="symbol-board">
+
+            <button class="symbol water"
+                    onclick="makeRequest('Water')">
+
+                <span>💧</span>
+                <strong>Water</strong>
+
+            </button>
+
+
+            <button class="symbol pain"
+                    onclick="makeRequest('Pain')">
+
+                <span>❤️‍🩹</span>
+                <strong>Pain</strong>
+
+            </button>
+
+
+            <button class="symbol bathroom"
+                    onclick="makeRequest('Bathroom')">
+
+                <span>🚻</span>
+                <strong>Bathroom</strong>
+
+            </button>
+
+
+            <button class="symbol food"
+                    onclick="makeRequest('Food')">
+
+                <span>🍽️</span>
+                <strong>Food</strong>
+
+            </button>
+
+
+            <button class="symbol company"
+                    onclick="makeRequest('Company')">
+
+                <span>👋</span>
+                <strong>Company</strong>
+
+            </button>
+
+
+            <button class="symbol help"
+                    onclick="makeRequest('Help')">
+
+                <span>🆘</span>
+                <strong>Help</strong>
+
+            </button>
+
+        </section>
+
+
+        <!-- Last request -->
+
+        <section class="last-request">
+
+            <p>Last request</p>
+
+            <h3 id="lastRequest">
+                Nothing yet
+            </h3>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= CAREGIVER INTERFACE ================= -->
+
+    <main id="caregiverView" class="view hidden">
+
+        <section class="dashboard-header">
+
+            <div>
+
+                <h2>Caregiver Dashboard</h2>
+
+                <p>
+                    Monitor communication patterns and requests.
+                </p>
+
+            </div>
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Patient connected
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERT -->
+
+        <section id="alertBox" class="alert-box hidden">
+
+            <div>
+
+                <h3>🚨 Pattern Detected</h3>
+
+                <p id="alertMessage">
+                    A repeated request has been detected.
+                </p>
+
+            </div>
+
+            <button onclick="acknowledgeAlert()">
+                Acknowledge
+            </button>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <span>📊</span>
+
+                <h3 id="totalRequests">
+                    0
+                </h3>
+
+                <p>Total Requests</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>❤️‍🩹</span>
+
+                <h3 id="painRequests">
+                    0
+                </h3>
+
+                <p>Pain Requests</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>🕐</span>
+
+                <h3 id="lastRequestTime">
+                    --
+                </h3>
+
+                <p>Latest Request</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMUNICATION HISTORY -->
+
+        <section class="history">
+
+            <div class="history-header">
+
+                <div>
+
+                    <h2>Communication History</h2>
+
+                    <p>
+                        Recent requests from the patient
+                    </p>
+
+                </div>
+
+                <button class="clear-button"
+                        onclick="clearHistory()">
+
+                    Clear History
+
+                </button>
+
+            </div>
+
+
+            <div id="historyList">
+
+                <div class="empty">
+
+                    No communication history yet.
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Setu • Local-first communication support prototype
+        </p>
+
+    </footer>
+
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
